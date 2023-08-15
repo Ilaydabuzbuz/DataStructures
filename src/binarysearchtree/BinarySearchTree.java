@@ -3,6 +3,7 @@ package binarysearchtree;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class BinarySearchTree {
 	private Node root;
@@ -204,4 +205,22 @@ public class BinarySearchTree {
 	    new Traverse(root);
 	    return results;
 	}
+	
+	public Integer kthSmallest(int k) {
+        Stack<Node> stack = new Stack<>();
+        Node node = root;
+        while (!stack.isEmpty() || node != null) {
+            while (node != null) {
+                stack.push(node);
+                node = node.left;
+            }
+        node = stack.pop();
+        k--;
+        if (k == 0) return node.value;
+        
+        node = node.right;
+        
+        }
+        return null;
+    }
 }
